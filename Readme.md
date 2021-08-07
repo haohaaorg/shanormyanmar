@@ -17,4 +17,15 @@ console.log(result);
 
 ```
 
+#### Output Example
+
+```javascript
+{
+    _confidence: 0.35789855240327934
+    _label: "shan"
+}
+```
+
+> This only detect phrases that are not too long and not too short. 
+
 Credit library - [ml-classify-text](https://www.npmjs.com/package/ml-classify-text)
