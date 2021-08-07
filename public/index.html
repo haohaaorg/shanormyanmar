@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shan or Burmese text classification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.2/materia/bootstrap.min.css">
+    <style>
+        .result .alert{
+            position:relative;
+        }
+        .result .close-btn{
+            text-align: center;
+            position:absolute;
+            top:4px;
+            right:4px;
+            background: #85d288;
+            color:#444;
+            width: 18px;
+            height: 18px;
+            border-radius:2px;
+            line-height: 18px;
+        }
+        .alert-danger .close-btn{
+            background:#ffb7a5;
+        }
+        .result .close-btn:hover{
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body style="background:#f6f7f9;">
+   <div class="d-flex align-items-center justify-content-center" style="max-width:600px;margin:10px auto;height:400px;">
+      <div class="predict-box p-4 bg-white shadow rounded my-4 w-100">
+            <form id="predict">
+                <h5 class="text-uppercase text-center">Shan or Burmese text classification</h5>
+                <p class="text-muted text-center"><small>Using Machine Learning</small></p>
+                <div class="result"></div>
+                <div class="form-group">
+                    <input type="text" class="form-control my-4" name="predict">
+                </div>
+                <div class="form-group"><button class="btn btn-primary">Submit</button></div>
+            </form>
+     </div>
+   </div>
+   <script src="dist/som.min.js"></script>
+   <script>
+       const listenCloseBtn = () =>{
+            document.querySelector('.close-btn').addEventListener('click',(e)=>{
+                e.target.parentNode.remove();
+            })
+       }
+       const predictForm = document.querySelector('#predict');
+       predictForm.addEventListener('submit',async(event)=>{
+        event.preventDefault();
+        const predict = new FormData(predictForm).get('predict');
+        if(predict.length < 5 || predict.length > 100){
+            document.querySelector('.result').innerHTML = `<p class="alert alert-danger"><small>Text must be min '5' and max '100' characters</small><span class="close-btn shadow-sm">x</span></p>`;
+            setTimeout(()=>{
+                listenCloseBtn();
+            },1000)
+            return;
+        }
+        document.querySelector('.result').innerHTML = 'Please wait, predicting...'
+        let res = (new Som()).detect(predict);
+        res = Object.keys(res).length !== 0?`<p class="alert alert-success"><small>Result : ${res._label} | Confidence : (${res._confidence})</small> <span class="close-btn shadow-sm">x</span></p>`:'<p class="alert alert-warning"><small>Result : phrase detection failed!</small> <span class="close-btn shadow-sm">x</span></p>';
+        document.querySelector('.result').innerHTML = res;
+        setTimeout(()=>{
+            listenCloseBtn();
+        },1000)
+        predictForm.reset();
+       })
+   </script>
+</body>
+</html>

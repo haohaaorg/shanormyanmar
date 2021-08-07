@@ -1,0 +1,23 @@
+{
+  "name": "shanormyanmar",
+  "version": "0.0.1",
+  "description": "Shan or Myanmar text classification",
+  "main": "server.js",
+  "scripts": {
+    "start":"node server.js",
+    "dev": "mix",
+    "watch": "mix --watch",
+    "prod": "mix --production"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "laravel-mix": "^6.0.27",
+    "ml-classify-text": "^2.0.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "sqlite"
+  ]
+}
