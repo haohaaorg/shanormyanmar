@@ -1,5 +1,7 @@
 # Shan or Myanmar text classification using ML
 
+[Demo](https://shanormyanmar.netlify.app)
+
 ### CDN js
 
 ```javascript
