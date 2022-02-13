@@ -5,7 +5,7 @@
 ### CDN js
 
 ```javascript
-https://cdn.jsdelivr.net/gh/kwarm/shanormyanmar@master/dist/som.min.js
+https://cdn.jsdelivr.net/gh/haohaaorg/shanormyanmar@master/dist/som.min.js
 ```
 
 ### Usage
